@@ -51,14 +51,15 @@ let config = {
 		},
 		{
 			module: "calendar",
-			header: "Indian  Holidays",
+			header: "Indian Holidays",
 			position: "top_left",
 			config: {
-				calendar: [
+				broadcastPastEvents: true,
+				calendars: [
 					{
-						fetchInterval: 7 * 24 * 60 * 60 * 1000,
 						symbol: "calendar-check",
-						url: "webcal://www.calendarlabs.com/ical-calendar/ics/33/India_holidays.ics"
+						url: "file:///home/rpi/MagicMirror/india_holidays.ics",
+						fetchInterval: 31536000000
 					}
 				]
 			}
@@ -68,18 +69,25 @@ let config = {
 			position: "top_center"
 		},
 		{
-			module: "MMM-OpenWeatherMapForecast",
-			header: "Weather",
- 			position: "top_right",
- 			classes: "default everyone",
- 			config: {
- 				apikey: "e2cbf0366c2035f9758584c2b30ad45d",
-   				latitude: "12.971599",
-   				longitude: "77.594566",      
-   				iconset: "4c",
-   				concise: false,
-   				forecastLayout: "table"
- 			}
+			module: "weather",
+			position: "top_right",
+			config: {
+				weatherProvider: "openmeteo",
+				type: "current",
+				lat: 12.9716,
+				lon: 77.5946
+			}
+		},
+		{
+			module: "weather",
+			position: "top_right",
+			header: "Weather Forecast",
+			config: {
+				weatherProvider: "openmeteo",
+				type: "forecast",
+				lat: 12.9716,
+				lon: 77.5946
+			}
 		},
 		{
 			module: "newsfeed",
@@ -88,7 +96,7 @@ let config = {
 				feeds: [
 					{
 						title: "Times of India",
-						url: "https://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms"
+						url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms"
 					}
 				],
 				showSourceTitle: true,
@@ -98,6 +106,7 @@ let config = {
 			}
 		},
 	]
+
 };
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/
